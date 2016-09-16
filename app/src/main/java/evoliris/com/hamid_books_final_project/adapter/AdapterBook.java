@@ -7,8 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
 import java.util.List;
 
+import evoliris.com.hamid_books_final_project.AppController;
 import evoliris.com.hamid_books_final_project.R;
 import evoliris.com.hamid_books_final_project.model.Book;
 
@@ -16,6 +20,8 @@ import evoliris.com.hamid_books_final_project.model.Book;
  * Created by temp on 15/09/2016.
  */
 public class AdapterBook extends ArrayAdapter<Book> {
+
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
 
     public AdapterBook(Context context, List<Book> books) {
@@ -30,6 +36,14 @@ public class AdapterBook extends ArrayAdapter<Book> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
         Book model = getItem(position);
+
+
+        imageLoader = AppController.getInstance().getImageLoader();
+        NetworkImageView thumbNail = (NetworkImageView) convertView
+                .findViewById(R.id.iv_listItem);
+        thumbNail.setImageUrl(model.getImage(), imageLoader);
+
+
 
         TextView titleTextView = (TextView) listItemView.findViewById(R.id.tv_listItem_title);
         titleTextView.setText(String.valueOf(model.getId()));

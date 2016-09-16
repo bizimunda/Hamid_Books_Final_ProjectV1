@@ -11,13 +11,20 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import evoliris.com.hamid_books_final_project.AppController;
 import evoliris.com.hamid_books_final_project.adapter.AdapterBook;
 import evoliris.com.hamid_books_final_project.model.Book;
 import evoliris.com.hamid_books_final_project.tasks.AsynctaskShowBooks;
@@ -31,6 +38,8 @@ public class ItemListFragment extends ListFragment implements AsynctaskShowBooks
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
     private Callbacks mCallbacks = sDummyCallbacks;
     private int mActivatedPosition = ListView.INVALID_POSITION;
+    private List<Book> bookList = new ArrayList<>();
+    private String url= "http://192.168.1.120:1337/book";
 
     private AsynctaskShowBooks taskShowBooks;
     private ConnectivityManager cm;
@@ -66,6 +75,48 @@ public class ItemListFragment extends ListFragment implements AsynctaskShowBooks
         } else {
             Toast.makeText(this.getContext(), "No data connection", Toast.LENGTH_SHORT).show();
         }
+
+        JsonArrayRequest movieReq = new JsonArrayRequest(url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("ItemListFragment", response.toString());
+
+
+                        // Parsing json
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+
+                                JSONObject obj = response.getJSONObject(i);
+                                Book book = new Book();
+                                book.setTitle(obj.getString("title"));
+                                book.setImage(obj.getString("photo"));
+
+                                // adding book to movies array
+                                bookList.add(book);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        // notifying list adapter about data changes
+                        // so that it renders the list view with updated data
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("ItemListFragment", "Error: " + error.getMessage());
+
+
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(movieReq);
+
     }
 
     @Override

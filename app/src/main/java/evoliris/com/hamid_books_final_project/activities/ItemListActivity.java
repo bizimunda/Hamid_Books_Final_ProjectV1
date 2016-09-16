@@ -39,6 +39,7 @@ public class ItemListActivity extends FragmentActivity implements ItemListFragme
 
             Bundle arguments = new Bundle();
             arguments.putLong(ItemDetailFragment.ARG_ITEM_ID, id);
+
             ItemDetailFragment fragment = new ItemDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

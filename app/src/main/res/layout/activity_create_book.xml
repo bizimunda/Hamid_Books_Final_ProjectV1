@@ -9,11 +9,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="evoliris.com.hamid_books.activities.CreateBookActivity">
 
-    <EditText
-        android:id="@+id/et_create_book_title"
+
+
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Add new book" />
+        android:text="Choose Image"
+        android:id="@+id/buttonChoose" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/iv_createBook" />
+
+    <EditText
+        android:id="@+id/et_createBook_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,10 +35,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_create_book_add"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:text="Upload Image"
+            android:id="@+id/buttonUpload" />
+
 
         <Button
             android:id="@+id/btn_create_book_showBooks"
@@ -34,9 +49,6 @@
     </LinearLayout>
 
 
-    <ListView
-        android:id="@+id/lv_create_book"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+
 
 </LinearLayout>

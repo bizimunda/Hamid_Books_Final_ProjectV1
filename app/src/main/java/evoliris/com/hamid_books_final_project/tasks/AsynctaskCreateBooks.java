@@ -49,14 +49,17 @@ public class AsynctaskCreateBooks extends AsyncTask<String, Void, String> {
 
             return sb.toString();
         } catch (IOException e) {
-            return "false";
+            return  e.getMessage();
+            //return "blop";
         }
+
+
 
     }
 
     @Override
     protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+        //super.onPostExecute(s);
         callback.onPostGetCreateBook(s);
     }
 

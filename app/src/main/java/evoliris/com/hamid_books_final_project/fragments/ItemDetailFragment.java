@@ -27,9 +27,7 @@ public class ItemDetailFragment extends Fragment implements AsynctaskShowOnlyOne
     private ConnectivityManager cm;
     private NetworkInfo activeNetwork;
     private AsynctaskShowOnlyOneBook onlyOneBook;
-
     public static final String ARG_ITEM_ID = "item_id";
-
     private long id;
 
     private TextView tvDetailFragmentTitle;

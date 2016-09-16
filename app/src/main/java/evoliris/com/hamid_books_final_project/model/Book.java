@@ -6,7 +6,7 @@ package evoliris.com.hamid_books_final_project.model;
 public class Book {
 
     private long id;
-    private byte[] image;
+    private String image;
     private String title;
 
 
@@ -23,11 +23,11 @@ public class Book {
         this.id = id;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

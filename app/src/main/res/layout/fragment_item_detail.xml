@@ -9,3 +9,4 @@
     android:padding="16dp"
     android:textIsSelectable="true"
     tools:context="evoliris.com.hamid_masterdetails.ItemDetailFragment" />
+

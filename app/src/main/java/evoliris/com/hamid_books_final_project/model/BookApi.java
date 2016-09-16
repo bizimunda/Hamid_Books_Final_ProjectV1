@@ -11,6 +11,11 @@ public class BookApi {
     @SerializedName("title")
     @Expose
     private String title;
+
+    @SerializedName("photo")
+    @Expose
+    private String photo;
+
     @SerializedName("id")
     @Expose
     private long id;
@@ -32,6 +37,16 @@ public class BookApi {
 
     /**
      *
+     * @return
+     *     The photo
+     */
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    /**
+     *
      * @param title
      *     The title
      */
@@ -39,8 +54,22 @@ public class BookApi {
         this.title = title;
     }
 
+    /**
+     *
+     * @param photo
+     *     The photo
+     */
+    public void setPhoto(String photo) {
+        this.title = photo;
+    }
+
     public BookApi withTitle(String title) {
         this.title = title;
+        return this;
+    }
+
+    public BookApi withPhoto(String photo) {
+        this.photo = photo;
         return this;
     }
 
