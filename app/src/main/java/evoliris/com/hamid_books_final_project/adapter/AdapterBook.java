@@ -12,8 +12,8 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
 
-import evoliris.com.hamid_books_final_project.AppController;
 import evoliris.com.hamid_books_final_project.R;
+import evoliris.com.hamid_books_final_project.app.LoginApplication;
 import evoliris.com.hamid_books_final_project.model.Book;
 
 /**
@@ -21,7 +21,7 @@ import evoliris.com.hamid_books_final_project.model.Book;
  */
 public class AdapterBook extends ArrayAdapter<Book> {
 
-    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    ImageLoader imageLoader = LoginApplication.getInstance().getImageLoader();
 
 
     public AdapterBook(Context context, List<Book> books) {
@@ -38,10 +38,10 @@ public class AdapterBook extends ArrayAdapter<Book> {
         Book model = getItem(position);
 
 
-        imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) convertView
+        imageLoader = LoginApplication.getInstance().getImageLoader();
+        NetworkImageView thumbNail = (NetworkImageView) listItemView
                 .findViewById(R.id.iv_listItem);
-        thumbNail.setImageUrl(model.getImage(), imageLoader);
+        thumbNail.setImageUrl(model.getPhoto(), imageLoader);
 
 
 

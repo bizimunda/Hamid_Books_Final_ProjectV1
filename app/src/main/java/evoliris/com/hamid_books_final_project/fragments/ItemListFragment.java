@@ -24,8 +24,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import evoliris.com.hamid_books_final_project.AppController;
 import evoliris.com.hamid_books_final_project.adapter.AdapterBook;
+import evoliris.com.hamid_books_final_project.app.LoginApplication;
 import evoliris.com.hamid_books_final_project.model.Book;
 import evoliris.com.hamid_books_final_project.tasks.AsynctaskShowBooks;
 
@@ -72,6 +72,7 @@ public class ItemListFragment extends ListFragment implements AsynctaskShowBooks
         if (isConnected) {
             taskShowBooks = new AsynctaskShowBooks(ItemListFragment.this);
             taskShowBooks.execute("http://192.168.1.120:1337/book/");
+            Log.i("ListFragment", "url passe");
         } else {
             Toast.makeText(this.getContext(), "No data connection", Toast.LENGTH_SHORT).show();
         }
@@ -90,7 +91,7 @@ public class ItemListFragment extends ListFragment implements AsynctaskShowBooks
                                 JSONObject obj = response.getJSONObject(i);
                                 Book book = new Book();
                                 book.setTitle(obj.getString("title"));
-                                book.setImage(obj.getString("photo"));
+                                book.setPhoto(obj.getString("photo"));
 
                                 // adding book to movies array
                                 bookList.add(book);
@@ -115,7 +116,7 @@ public class ItemListFragment extends ListFragment implements AsynctaskShowBooks
         });
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(movieReq);
+        LoginApplication.getInstance().addToRequestQueue(movieReq);
 
     }
 

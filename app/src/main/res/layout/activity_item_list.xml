@@ -5,7 +5,5 @@
     android:name="evoliris.com.hamid_books_final_project.fragments.ItemListFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     tools:context="evoliris.com.hamid_masterdetails.ItemListActivity"
     tools:layout="@android:layout/list_content" />
